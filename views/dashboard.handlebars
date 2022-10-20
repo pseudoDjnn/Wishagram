@@ -1,0 +1,20 @@
+<div class=""bg-dark text-light">
+    <div class="container">
+        <div class="d-flex">
+            <div class="col-md-12">
+                <h1>Your Dashboard</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    {{#each posts as |post|}}
+    {{> post-info post = post active_dashboard = true }}
+    {{/each}}
+</div>
+
+{{!ADD NEW POST}}
+<div>
+    <a href="/dashboard/new-post" class="btn btn-dark">Create A New Post</a>
+</div>
