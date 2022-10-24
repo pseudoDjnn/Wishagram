@@ -12,8 +12,8 @@ async function commentHandler(event) {
         window.location.toString().split("/").length - 2
     ];
     const user_id = form.getAttribute("user-data");
-    const comment = form.querySelector('[name="comment"]').value.trim();
-    if (comment) {
+    const comment_text = form.querySelector('[name="comment"]').value.trim();
+    if (comment_text) {
         const response = await fetch("/api/comments", {
             method: "post",
             body: JSON.stringify({
