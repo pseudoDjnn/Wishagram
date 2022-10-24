@@ -6,7 +6,7 @@ function comment_form() {
     comment_btn.classList.toggle("d-none");
 }
 
-async function commnetHandler(event) {
+async function commentHandler(event) {
     event.preventDefault();
     const post_id = window.location.toString().split("/")[
         window.location.toString().split("/").length - 2
@@ -21,7 +21,7 @@ async function commnetHandler(event) {
                 post_id,
                 user_id,
             }),
-            headers: { "Content-Type": "application/json"-},
+            headers: { "Content-Type": "application/json"},
         });
 
         if (response.ok) {
@@ -30,10 +30,8 @@ async function commnetHandler(event) {
             alert(response.statusText);
         }
     } else {
-        alert("Only comments please");
+        alert("Please only comment!");
     }
 }
 
-document
-    .querySelector("#comment-form")
-    .addEventListener("submit", commentHandler);
+document.querySelector("#comment-form").addEventListener("submit", commentHandler);

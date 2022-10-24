@@ -6,7 +6,7 @@ async function addPostHandler(event) {
     const content = document.querySelector("#content").value;
     const user_id = newPost.getAttribute("user-data");
     if (title && content) {
-        const response = await fetch(".api/posts". {
+        const response = await fetch("/api/posts", {
             method: "post", 
             body: JSON.stringify({
                 title,
@@ -22,7 +22,7 @@ async function addPostHandler(event) {
             alert(response.statusText);
         }
     } else {
-        alert("Please fill out all fields");
+        alert("Please fill in all fields!");
     }
 }
 
