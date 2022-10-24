@@ -2,8 +2,8 @@ const comment_btn = document.querySelector("#comment-btn");
 const form = document.querySelector("#comment-form");
 
 function comment_form() {
-    form.classList.toggle("d-none");
-    comment_btn.classList.toggle("d-none");
+  form.classList.toggle("d-none");
+  comment_btn.classList.toggle("d-none");
 }
 
 async function commentHandler(event) {
@@ -24,14 +24,14 @@ async function commentHandler(event) {
             headers: { "Content-Type": "application/json"},
         });
 
-        if (response.ok) {
-            document.location.reload();
-        } else {
-            alert(response.statusText);
-        }
+    if (response.ok) {
+      document.location.reload();
     } else {
-        alert("Please only comment!");
+      alert(response.statusText);
     }
+  } else {
+    alert("Please only comment!");
+  }
 }
 
 document.querySelector("#comment-form").addEventListener("submit", commentHandler);
