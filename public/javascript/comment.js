@@ -7,22 +7,22 @@ function comment_form() {
 }
 
 async function commentHandler(event) {
-  event.preventDefault();
-  const post_id = window.location.toString().split("/")[
-    window.location.toString().split("/").length - 2
-  ];
-  const user_id = form.getAttribute("user-data");
-  const comment = form.querySelector('[name="comment"]').value.trim();
-  if (comment) {
-    const response = await fetch("/api/comments", {
-      method: "post",
-      body: JSON.stringify({
-        comment,
-        post_id,
-        user_id,
-      }),
-      headers: { "Content-Type": "application/json" },
-    });
+    event.preventDefault();
+    const post_id = window.location.toString().split("/")[
+        window.location.toString().split("/").length - 2
+    ];
+    const user_id = form.getAttribute("user-data");
+    const comment_text = form.querySelector('[name="comment"]').value.trim();
+    if (comment_text) {
+        const response = await fetch("/api/comments", {
+            method: "post",
+            body: JSON.stringify({
+                comment,
+                post_id,
+                user_id,
+            }),
+            headers: { "Content-Type": "application/json"},
+        });
 
     if (response.ok) {
       document.location.reload();
@@ -34,6 +34,4 @@ async function commentHandler(event) {
   }
 }
 
-document
-  .querySelector("#comment-form")
-  .addEventListener("submit", commentHandler);
+document.querySelector("#comment-form").addEventListener("submit", commentHandler);
