@@ -1,0 +1,49 @@
+<div class="bg-dark text-light">
+  <div class="container">
+    <div class="d-flex">
+      <div class="col-md-12">
+        <h1 class="fw-bold">Post Comments</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  {{> post-info post}}
+  {{#if post.comments}}
+  <h2 class="mt-2">Comments</h2>
+  {{#each post.comments as |comment|}}
+  {{> comment-info comment}}
+  {{/each}}
+  {{else}}
+  <h2>No comments yet.</h2>
+  {{/if}}
+
+  {{#if loggedIn}}
+  <!--- COMMENT FORM -->
+  <form id="comment-form" user-data="{{user_id}}" class="mt-3 d-none" method="POST">
+    <div class="form-group card">
+      <div class="card-header bg-dark text-light">
+        Comment
+      </div>
+      <div class="card-body">
+        <textarea name="comment" class="form-control" rows="3"></textarea>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-dark mt-2">Submit</button>
+  </form>
+  {{/if}}
+
+  <!-- ONLY SHOW IF LOGGED IN -->
+  <div class="text-center my-3">
+    {{#if loggedIn}}
+    <button id="comment-btn" onclick="comment_form()" class="btn btn-dark">Add comment</button>
+    {{else}}
+    <a href="/login" class="btn btn-dark">Login to Comment</a>
+    {{/if}}
+  </div>
+</div>
+
+{{#if loggedIn}}
+<script src="/javascript/comment.js"></script>
+{{/if}}
