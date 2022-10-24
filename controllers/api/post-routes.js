@@ -4,7 +4,7 @@ const { User, Post, Comment } = require("../../models");
 // GRAB ALL POSTS
 router.get("/", async (req, res) => {
   try {
-    const dbPostsData = await Post.findAll({
+    const postData = await Post.findAll({
       attributes: { exclude: ["created_at", "updated_at"] },
       include: [
         {
@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ["id", "comment", "created_at"],
+          attributes: ["id", "comment_text", "created_at"],
           include: {
             model: User,
             attributes: ["username"],
@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
         },
       ],
     });
-    const posts = dbPostsData.map((post) => post.get({ plain: true }));
+    const posts = postData.map((post) => post.get({ plain: true }));
     res.json(posts);
   } catch (err) {
     console.log(err);
@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
 // GRAB SINGLE POST
 router.get("/:id", async (req, res) => {
   try {
-    const dbPostData = await Post.findOne({
+    const postData = await Post.findOne({
       where: { id: req.params.id },
       attributes: { exclude: ["created_at", "updated_at"] },
       include: [
@@ -50,7 +50,7 @@ router.get("/:id", async (req, res) => {
         },
       ],
     });
-    const post = dbPostData.get({ plain: true });
+    const post = postData.get({ plain: true });
     res.json(post);
   } catch (err) {
     console.log(err);
