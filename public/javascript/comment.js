@@ -30,7 +30,7 @@ async function commentHandler(event) {
       alert(response.statusText);
     }
   } else {
-    alert("Please only comment!");
+    alert("Only comments please");
   }
 }
 
