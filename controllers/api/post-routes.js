@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Post, User, Comment } = require("../../models");
+const { Post, User, Like, Comment } = require("../../models");
 
 // GRAB ALL POSTS
 router.get("/", async (req, res) => {
@@ -71,6 +71,11 @@ router.post("/", async (req, res) => {
     console.log(err);
     res.status(500).json(err);
   }
+});
+
+// LIKE POST
+router.put("/likePost", async (req, res) => {
+ 
 });
 
 // UPDATE POST
