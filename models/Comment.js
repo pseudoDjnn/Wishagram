@@ -26,7 +26,7 @@ Comment.init(
                 key: 'id'
             }
         },
-        comment_text: {
+        comment: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
