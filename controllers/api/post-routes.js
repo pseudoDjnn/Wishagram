@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Post, User, Comment } = require("../../models");
+const { Post, User, Like, Comment } = require("../../models");
 
 // GRAB ALL POSTS
 router.get("/", async (req, res) => {
@@ -71,6 +71,19 @@ router.post("/", async (req, res) => {
     console.log(err);
     res.status(500).json(err);
   }
+});
+
+// LIKE POST
+router.put("/upvote", async (req, res) => {
+  if (req.session) {
+    // pass session id along with all destructured properties on req.body
+    Post.upvote({...req.body, user_id: req.session.user_id }, {Like, Comment, User })
+        .then(updatedVoteData => res.json(updatedVoteData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+}
 });
 
 // UPDATE POST
