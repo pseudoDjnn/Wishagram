@@ -74,8 +74,16 @@ router.post("/", async (req, res) => {
 });
 
 // LIKE POST
-router.put("/likePost", async (req, res) => {
- 
+router.put("/upvote", async (req, res) => {
+  if (req.session) {
+    // pass session id along with all destructured properties on req.body
+    Post.upvote({...req.body, user_id: req.session.user_id }, {Like, Comment, User })
+        .then(updatedVoteData => res.json(updatedVoteData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+}
 });
 
 // UPDATE POST
