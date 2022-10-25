@@ -4,7 +4,7 @@ const { User, Post, Comment } = require("../../models");
 // GRAB ALL POSTS
 router.get("/", async (req, res) => {
   try {
-    const postData = await Post.findAll({
+    const dbpostData = await Post.findAll({
       attributes: { exclude: ["created_at", "updated_at"] },
       include: [
         {
@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ["id", "comment_text", "created_at"],
+          attributes: ["id", "comment", "created_at"],
           include: {
             model: User,
             attributes: ["username"],
@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
         },
       ],
     });
-    const posts = postData.map((post) => post.get({ plain: true }));
+    const posts = dbpostData.map((post) => post.get({ plain: true }));
     res.json(posts);
   } catch (err) {
     console.log(err);
@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
 // GRAB SINGLE POST
 router.get("/:id", async (req, res) => {
   try {
-    const postData = await Post.findOne({
+    const dbpostData = await Post.findOne({
       where: { id: req.params.id },
       attributes: { exclude: ["created_at", "updated_at"] },
       include: [
@@ -42,7 +42,7 @@ router.get("/:id", async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ["id", "comment_text", "created_at"],
+          attributes: ["id", "comment", "created_at"],
           include: {
             model: User,
             attributes: ["username"],
@@ -50,7 +50,7 @@ router.get("/:id", async (req, res) => {
         },
       ],
     });
-    const post = postData.get({ plain: true });
+    const post = dbpostData.get({ plain: true });
     res.json(post);
   } catch (err) {
     console.log(err);
@@ -63,7 +63,7 @@ router.post("/", async (req, res) => {
   try {
     const newPost = await Post.create({
       title: req.body.title,
-      post_url: req.body.post_url,
+      content: req.body.content,
       user_id: req.body.user_id,
     });
     res.json(newPost);

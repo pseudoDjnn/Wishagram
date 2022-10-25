@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const { User, Post, Comment } = require("../../models");
 
-// GRAB ALL
+// GRAB ALL USERS
 router.get("/", async (req, res) => {
-  const userData = await User.findAll({
+  const dbuserData = await User.findAll({
     attributes: { exclude: ["password"] },
     include: [
       {
@@ -12,28 +12,28 @@ router.get("/", async (req, res) => {
       },
       {
         model: Comment,
-        attributes: ["id", "comment_text", "created_at", "updated_at"],
+        attributes: ["id", "comment", "created_at", "updated_at"],
       },
     ],
   });
-  const users = userData.map((user) => user.get({ plain: true }));
+  const users = dbuserData.map((user) => user.get({ plain: true }));
   res.json(users);
 });
 
 // GRAB SINGLE USER
 router.get("/:id", async (req, res) => {
   try {
-    const userData = await User.findOne({
+    const dbuserData = await User.findOne({
       where: { id: req.params.id },
       attributes: { exclude: ["password"] },
       include: [
         {
           model: Post,
-          attributes: ["id", "title", "post_url", "created_at"],
+          attributes: ["id", "title", "content", "created_at"],
         },
         {
           model: Comment,
-          attributes: ["id", "comment_text", "created_at"],
+          attributes: ["id", "comment", "created_at"],
           include: {
             model: Post,
             attributes: ["title"],
@@ -41,37 +41,8 @@ router.get("/:id", async (req, res) => {
         },
       ],
     });
-    const user = userData.get({ plain: true });
+    const user = dbuserData.get({ plain: true });
     res.json(user);
-  } catch (err) {
-    console.log(err);
-    res.sendStatus(500).json(err);
-  }
-});
-
-// LOGIN
-router.post("/login", async (req, res) => {
-  try {
-    const user = await User.findOne({
-      where: {
-        email: req.body.email,
-      },
-    });
-    if (user) {
-      const userPassword = await user.validatePassword(req.body.password);
-      if (!userPassword) {
-        res.status(400).json({ message: "Invalid password" });
-        return;
-      }
-      req.session.save(() => {
-        // VARIABLE DECLARATION DURING USER SESSION
-        req.session.user_id = user.id;
-        req.session.username = user.username;
-        req.session.loggedIn = true;
-
-        res.json({ user: user, message: "Successfully logged in" });
-      });
-    }
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -96,6 +67,45 @@ router.post("/", async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
+  }
+});
+
+// LOGIN
+router.post("/login", async (req, res) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        email: req.body.email,
+      },
+    });
+    if (user) {
+      const validPassword = await user.validatePassword(req.body.password);
+      if (!validPassword) {
+        res.status(400).json({ message: "Invalid password" });
+        return;
+      }
+      req.session.save(() => {
+        // VARIABLE DECLARATION DURING USER SESSION
+        req.session.user_id = user.id;
+        req.session.username = user.username;
+        req.session.loggedIn = true;
+
+        res.json({ user: user, message: "Successfully logged in" });
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.post("/logout", (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
   }
 });
 

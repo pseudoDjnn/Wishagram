@@ -4,7 +4,7 @@ const { User, Post, Comment } = require("../../models");
 // GRAB ALL COMMENTS
 router.get("/", async (req, res) => {
   try {
-    const commentData = await Comment.findAll({
+    const dbcommentData = await Comment.findAll({
       include: [
         {
           model: User,
@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
         },
       ],
     });
-    const comments = commentData.map((comment) => comment.get({ plain: true }));
+    const comments = dbcommentData.map((comment) => comment.get({ plain: true }));
     res.json(comments);
   } catch (err) {
     console.log(err);
@@ -25,14 +25,14 @@ router.get("/", async (req, res) => {
 });
 
 // GRAB SINGLE COMMENT
-router.use("/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
-    const commentData = await Comment.findOne({
+    const dbcommentData = await Comment.findOne({
       where: {
         id: req.params.id,
       },
     });
-    const comment = commentData.get({ plain: true });
+    const comment = dbcommentData.get({ plain: true });
     res.json(comment);
   } catch (err) {
     console.log(err);
@@ -44,7 +44,7 @@ router.use("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const dbCommentData = await Comment.create({
-      comment_text: req.body.comment_text,
+      comment: req.body.comment,
       post_id: req.body.post_id,
       user_id: req.body.user_id,
     });
@@ -62,7 +62,7 @@ router.put("/:id", async (req, res) => {
   try {
     const dbCommentData = await Comment.update(
       {
-        comment_text: req.body.comment_text,
+        comment: req.body.comment,
         post_id: req.body.post_id,
         user_id: req.body.user_id,
       },
