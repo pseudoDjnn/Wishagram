@@ -5,15 +5,9 @@ const Url = require("url");
 // GRAB ALL USERS
 router.get("/", async (req, res) => {
   try {
-<<<<<<< HEAD
-    const dbpostData = await Post.findAll({
-      attributes: ["id", "title", "content", "created_at"],
-      included: [
-=======
     const dbPostsData = await Post.findAll({
       attributes: ["id", "title", "content", "created_at"],
       include: [
->>>>>>> develop
         {
           model: User,
           attributes: ["id", "username"],
