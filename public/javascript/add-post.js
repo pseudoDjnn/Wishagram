@@ -1,16 +1,16 @@
-const newPost = document.querySelector("new-post-form");
+const newPost = document.querySelector("#new-post-form");
 
 async function addPostHandler(event) {
   event.preventDefault();
   const title = document.querySelector("#title").value;
-  const content = document.querySelector("#post_url").value;
+  const content = document.querySelector("#content").value;
   const user_id = newPost.getAttribute("user-data");
-  if (title && post_url) {
+  if (title && content) {
     const response = await fetch("/api/posts", {
       method: "post",
       body: JSON.stringify({
         title,
-        post_url,
+        content,
         user_id,
       }),
       headers: { "Content-Type": "application/json" },
@@ -22,7 +22,7 @@ async function addPostHandler(event) {
       alert(response.statusText);
     }
   } else {
-    alert("Please fill in all fields!");
+    alert("Please fill out all fields");
   }
   console.log(
     

@@ -1,12 +1,11 @@
-async function registerFormHandler(event) {
+async function registerHandler(event) {
   event.preventDefault();
-
   const username = document.querySelector("#username-register").value.trim();
   const email = document.querySelector("#email-register").value.trim();
   const password = document.querySelector("#password-register").value.trim();
 
   if (username && email && password) {
-    const response = await fetch("api/users", {
+    const response = await fetch("/api/users", {
       method: "post",
       body: JSON.stringify({
         username,
@@ -18,11 +17,11 @@ async function registerFormHandler(event) {
     if (response.ok) {
       document.location.replace("/");
     } else {
-      alert("Please fill in all fields!");
+      alert("You must fill out all required fields.");
     }
   }
 }
 
 document
   .querySelector(".register-form")
-  .addEventListener("submit", registerFormHandler);
+  .addEventListener("submit", registerHandler);

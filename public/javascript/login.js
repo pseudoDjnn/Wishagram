@@ -1,6 +1,5 @@
 async function loginFormHandler(event) {
   event.preventDefault();
-
   const email = document.querySelector("#email-login").value.trim();
   const password = document.querySelector("#password-login").value.trim();
 
@@ -20,7 +19,7 @@ async function loginFormHandler(event) {
       alert(response.statusText);
     }
   } else {
-    alert("Username or Password is not the proper length.");
+    alert("Please fill out all fields");
   }
 }
 
