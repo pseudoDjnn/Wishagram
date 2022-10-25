@@ -2,28 +2,28 @@ const router = require("express").Router();
 const { User, Post, Comment } = require("../models");
 const Url = require("url");
 
-// GRAB ALL USERS FOR HOMEPAGE DISPLAY
+// GRAB ALL USERS
 router.get("/", async (req, res) => {
   try {
-    const postData = await Post.findAll({
-      attributes: ["id", "title", "post_url", "created_at"],
-      included: [
+    const dbPostsData = await Post.findAll({
+      attributes: ["id", "title", "content", "created_at"],
+      include: [
         {
           model: User,
           attributes: ["id", "username"],
         },
         {
           model: Comment,
-          attributes: ["id", "comment_text"],
+          attributes: ["id", "comment"],
         },
       ],
     });
-    const posts = postData.map((post) => post.get({ plain: true }));
-    const x = Url.parse(req._parsedOriginalUrl, true);
+    const posts = dbPostsData.map((post) => post.get({ plain: true }));
+    const q = Url.parse(req._parsedOriginalUrl, true);
     res.render("homepage", {
       posts,
       loggedIn: req.session.loggedIn,
-      active_home: x.path === "/",
+      active_home: q.path === "/",
       home: true,
     });
   } catch (err) {
@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// LOGIN REDIRECT
+// LOGIN
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/dashboard");
@@ -40,7 +40,7 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-// REGISTER REDIRECT
+// REGISTER
 router.get("/register", (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/");
@@ -53,7 +53,7 @@ router.get("/post/:id/comments", async (req, res) => {
   try {
     const dbPostData = await Post.findOne({
       where: { id: req.params.id },
-      attributes: ["id", "title", "post_url", "created_at", "updated_at"],
+      attributes: ["id", "title", "content", "created_at", "updated_at"],
       include: [
         {
           model: User,
@@ -61,7 +61,7 @@ router.get("/post/:id/comments", async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ["id", "comment_text", "created_at"],
+          attributes: ["id", "comment", "created_at"],
           include: {
             model: User,
             attributes: ["id", "username"],
