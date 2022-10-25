@@ -3,7 +3,7 @@ const { User, Post, Comment } = require("../../models");
 
 // GRAB ALL USERS
 router.get("/", async (req, res) => {
-  const dbuserData = await User.findAll({
+  const dbUsersData = await User.findAll({
     attributes: { exclude: ["password"] },
     include: [
       {
@@ -16,14 +16,14 @@ router.get("/", async (req, res) => {
       },
     ],
   });
-  const users = dbuserData.map((user) => user.get({ plain: true }));
+  const users = dbUsersData.map((user) => user.get({ plain: true }));
   res.json(users);
 });
 
 // GRAB SINGLE USER
 router.get("/:id", async (req, res) => {
   try {
-    const dbuserData = await User.findOne({
+    const dbUserData = await User.findOne({
       where: { id: req.params.id },
       attributes: { exclude: ["password"] },
       include: [
@@ -41,7 +41,8 @@ router.get("/:id", async (req, res) => {
         },
       ],
     });
-    const user = dbuserData.get({ plain: true });
+
+    const user = dbUserData.get({ plain: true });
     res.json(user);
   } catch (err) {
     console.log(err);
@@ -57,6 +58,7 @@ router.post("/", async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     });
+
     req.session.save(() => {
       req.session.user_id = newUser.id;
       req.session.username = newUser.username;
@@ -78,19 +80,21 @@ router.post("/login", async (req, res) => {
         email: req.body.email,
       },
     });
+
     if (user) {
       const validPassword = await user.validatePassword(req.body.password);
       if (!validPassword) {
-        res.status(400).json({ message: "Invalid password" });
+        res.status(400).json({ message: "Incorrect password!" });
         return;
       }
+
       req.session.save(() => {
-        // VARIABLE DECLARATION DURING USER SESSION
+        // declare session variables
         req.session.user_id = user.id;
         req.session.username = user.username;
         req.session.loggedIn = true;
 
-        res.json({ user: user, message: "Successfully logged in" });
+        res.json({ user: user, message: "You are now logged in!" });
       });
     }
   } catch (err) {
@@ -99,6 +103,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// LOGOUT
 router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {

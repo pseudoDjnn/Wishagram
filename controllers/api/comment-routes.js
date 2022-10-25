@@ -1,10 +1,10 @@
 const router = require("express").Router();
-const { User, Post, Comment } = require("../../models");
+const { User, Comment, Post } = require("../../models");
 
 // GRAB ALL COMMENTS
 router.get("/", async (req, res) => {
   try {
-    const dbcommentData = await Comment.findAll({
+    const dbCommentData = await Comment.findAll({
       include: [
         {
           model: User,
@@ -16,7 +16,9 @@ router.get("/", async (req, res) => {
         },
       ],
     });
-    const comments = dbcommentData.map((comment) => comment.get({ plain: true }));
+    const comments = dbCommentData.map((comment) =>
+      comment.get({ plain: true })
+    );
     res.json(comments);
   } catch (err) {
     console.log(err);
@@ -27,12 +29,13 @@ router.get("/", async (req, res) => {
 // GRAB SINGLE COMMENT
 router.get("/:id", async (req, res) => {
   try {
-    const dbcommentData = await Comment.findOne({
+    const dbCommentData = await Comment.findOne({
       where: {
         id: req.params.id,
       },
     });
-    const comment = dbcommentData.get({ plain: true });
+
+    const comment = dbCommentData.get({ plain: true });
     res.json(comment);
   } catch (err) {
     console.log(err);

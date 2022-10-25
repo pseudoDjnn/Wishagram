@@ -2,12 +2,18 @@ const router = require("express").Router();
 const { User, Post, Comment } = require("../models");
 const Url = require("url");
 
-// GRAB ALL USERS FOR HOMEPAGE DISPLAY
+// GRAB ALL USERS
 router.get("/", async (req, res) => {
   try {
+<<<<<<< HEAD
     const dbpostData = await Post.findAll({
       attributes: ["id", "title", "content", "created_at"],
       included: [
+=======
+    const dbPostsData = await Post.findAll({
+      attributes: ["id", "title", "content", "created_at"],
+      include: [
+>>>>>>> develop
         {
           model: User,
           attributes: ["id", "username"],
@@ -18,7 +24,7 @@ router.get("/", async (req, res) => {
         },
       ],
     });
-    const posts = dbpostData.map((post) => post.get({ plain: true }));
+    const posts = dbPostsData.map((post) => post.get({ plain: true }));
     const q = Url.parse(req._parsedOriginalUrl, true);
     res.render("homepage", {
       posts,
@@ -32,7 +38,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// LOGIN REDIRECT
+// LOGIN
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/dashboard");
@@ -40,7 +46,7 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-// REGISTER REDIRECT
+// REGISTER
 router.get("/register", (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/");

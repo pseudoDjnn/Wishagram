@@ -1,4 +1,4 @@
-const newPost = document.querySelector("new-post-form");
+const newPost = document.querySelector("#new-post-form");
 
 async function addPostHandler(event) {
   event.preventDefault();
@@ -22,7 +22,7 @@ async function addPostHandler(event) {
       alert(response.statusText);
     }
   } else {
-    alert("Please fill in all fields!");
+    alert("Please fill out all fields");
   }
 }
 

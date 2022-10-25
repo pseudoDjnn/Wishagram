@@ -1,10 +1,10 @@
 const router = require("express").Router();
-const { User, Post, Comment } = require("../../models");
+const { Post, User, Comment } = require("../../models");
 
 // GRAB ALL POSTS
 router.get("/", async (req, res) => {
   try {
-    const dbpostData = await Post.findAll({
+    const dbPostsData = await Post.findAll({
       attributes: { exclude: ["created_at", "updated_at"] },
       include: [
         {
@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
         },
       ],
     });
-    const posts = dbpostData.map((post) => post.get({ plain: true }));
+    const posts = dbPostsData.map((post) => post.get({ plain: true }));
     res.json(posts);
   } catch (err) {
     console.log(err);
@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
 // GRAB SINGLE POST
 router.get("/:id", async (req, res) => {
   try {
-    const dbpostData = await Post.findOne({
+    const dbPostData = await Post.findOne({
       where: { id: req.params.id },
       attributes: { exclude: ["created_at", "updated_at"] },
       include: [
@@ -50,7 +50,7 @@ router.get("/:id", async (req, res) => {
         },
       ],
     });
-    const post = dbpostData.get({ plain: true });
+    const post = dbPostData.get({ plain: true });
     res.json(post);
   } catch (err) {
     console.log(err);
