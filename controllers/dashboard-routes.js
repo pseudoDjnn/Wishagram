@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { Post, User, Comment } = require("../models");
 const withAuth = require("../utils/auth");
-// const sequelize = require("../config/connection");
+const sequelize = require("../config/connection");
 const Url = require("url");
 
 // GRAB ALL USER COMMENTS
@@ -11,7 +11,7 @@ router.get("/", withAuth, async (req, res) => {
       where: {
         user_id: req.session.user_id,
       },
-      attributes: ["id", "title", "post_url", "created_at", "updated_at"],
+      attributes: ["id", "title", "content", "created_at", "updated_at"],
       include: [
         {
           model: User,
@@ -19,7 +19,7 @@ router.get("/", withAuth, async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ["id", "comment_text"],
+          attributes: ["id", "comment"],
         },
       ],
     });
@@ -41,7 +41,7 @@ router.get("/post/:id/", withAuth, async (req, res) => {
   try {
     const dbPostData = await Post.findOne({
       where: { id: req.params.id },
-      attributes: ["id", "title", "post_url", "created_at", "updated_at"],
+      attributes: ["id", "title", "content", "created_at", "updated_at"],
       include: [
         {
           model: User,
@@ -49,7 +49,7 @@ router.get("/post/:id/", withAuth, async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ["id", "comment_text"],
+          attributes: ["id", "comment"],
         },
       ],
     });
