@@ -10,7 +10,7 @@ async function updatePost(event) {
     method: "put",
     body: JSON.stringify({
       title,
-      post_url,
+      content,
     }),
     headers: { "Content-Type": "application/json" },
   });
