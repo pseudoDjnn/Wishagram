@@ -4,7 +4,7 @@
 
 ## Description
 
-- What is the purpose of this repository? This project is design where Users can publish their wishes. Post and comment on other users wishes. This applications follows the MVC paradigm in its stucture and uses Handlebars.js as the templating language, Sequelize as the ORM<br/>
+- What is the purpose of this repository? This project is design where Users can publish their wishes. Post and comment on other users wishes. This applications follows the MVC paradigm in its stucture and uses Handlebars.js as the templating language, Sequelize as the ORM.<br/>
 
 # Table of Contents
 
