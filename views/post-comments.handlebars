@@ -38,6 +38,7 @@
   <div class="text-center my-3">
     {{#if loggedIn}}
     <button id="comment-btn" onclick="comment_form()" class="btn btn-dark">Add comment</button>
+    <button id="like-btn" type="button" class="btn btn-dark">Like</button>
     {{else}}
     <a href="/login" class="btn btn-dark">Login to Comment</a>
     {{/if}}
@@ -46,4 +47,5 @@
 
 {{#if loggedIn}}
 <script src="/javascript/comment.js"></script>
+<script src="/javascript/likepost.js"></script>
 {{/if}}

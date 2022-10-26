@@ -40,6 +40,7 @@ A site built using the MVC framework allow a user to signup and login afterwards
   # Contributors
 
   pseudoDjnn
+  Raenique27
 
   # Questions
 
