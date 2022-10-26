@@ -2,9 +2,11 @@
 const path = require("path");
 const express = require("express");
 const session = require("express-session");
-const morgan = require("morgan");
-const helmet = require("helmet");
+// const morgan = require("morgan");
+// const helmet = require("helmet");
 const exphbs = require("express-handlebars");
+// const fileUpload = require("express-fileupload");
+// const multer = require("multer");
 
 // USING EXPRESS AND CALLING THE PORT
 const app = express();
@@ -27,8 +29,9 @@ const sess = {
 };
 
 app.use(session(sess));
-app.use(morgan("dev"));
-app.use(helmet());
+// app.use(morgan("dev"));
+// app.use(helmet());
+// app.use(fileUpload());
 
 const helpers = require("./utils/helpers");
 
