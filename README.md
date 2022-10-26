@@ -46,7 +46,7 @@
 
   Wanting to understand more about this repo?
 
-  You can veiw more of the project https://github.com/pseudoDjnn/ or contact 
+  You can veiw more of the project https://github.com/pseudoDjnn/ or contact lavahrexes@gmail.com 
   
   ## License
 
