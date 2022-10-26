@@ -2,6 +2,8 @@
 const path = require("path");
 const express = require("express");
 const session = require("express-session");
+const morgan = require("morgan");
+const helmet = require("helmet");
 const exphbs = require("express-handlebars");
 
 // USING EXPRESS AND CALLING THE PORT
@@ -14,7 +16,9 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 // COOK-KEY
 const sess = {
   secret: "Secret cookie is secret",
-  cookie: {},
+  cookie: {
+    expires: 875000,
+  },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
@@ -23,6 +27,8 @@ const sess = {
 };
 
 app.use(session(sess));
+app.use(morgan("dev"));
+app.use(helmet());
 
 const helpers = require("./utils/helpers");
 

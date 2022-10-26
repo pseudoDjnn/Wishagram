@@ -20,6 +20,30 @@
           <label for="title">Title</label>
           <input type="text" class="form-control" id="title" name="title" />
         </div>
+        <form action="/" method="POST" encType="multipart/form-data">
+          <h3>Upload Profile Photo</h3>
+          <input type="file" name="sampleFile" accept="image/*" />
+          <input type="submit" class="btn btn-primary">
+        </form>
+
+        <div class="card">
+          {{#each rows}}
+
+          {{#if this.profile_image}}
+          <img class="card__image" src="{{this.profile_image}}" loading="lazy" alt="User Profile">
+          {{else}}
+          <img class="card__image" src="/img/default.jpg" loading="lazy" alt="User Profile">
+          {{/if}}
+
+          <h1 class="card__title">{{this.name}}</h1>
+          <div class="card__job">{{this.job_title}}</div>
+          <p class="card__about">
+            {{this.description}}
+          </p>
+          <button type="button" class="btn btn-primary">View Profile</button>
+          {{/each}}
+
+        </div>
         <div class="form-group">
           <label for="body">Content</label>
           <textarea class="form-control" id="content" name="content" rows="3"></textarea>
@@ -29,5 +53,8 @@
     </div>
   </form>
 </div>
+
+
+
 
 <script src="/javascript/add-post.js"></script>
