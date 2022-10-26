@@ -10,7 +10,7 @@
 
 <!-- form -->
 <div class="container">
-  <form action="/new-post" id="new-post-form" user-data="{{user_id}}" method="POST" enctype="multipart/form-data">
+  <form action="/" id="new-post-form" user-data="{{user_id}}" method="POST" enctype="multipart/form-data">
     <div class="card mt-3 bg-dark overflow-hidden">
       <div class="d-flex card-header justify-content-between align-items-center text-light">
         <h2>New Post</h2>
@@ -21,9 +21,9 @@
           <input type="text" class="form-control" id="title" name="title" />
         </div>
         <h3>Upload Photo</h3>
-        <form action="/new-post" method="POST" user-data="{{photo}}" encType="multipart/form-data">
+        {{!-- <form action="/new-post" method="POST" user-data="{{photo}}" encType="multipart/form-data"> --}}
           <input type="file" id="image" name="image" />
-          <input type="submit" class="btn btn-info">
+          {{!-- <input type="submit" class="btn btn-info"> --}}
 
           {{!-- <div class="card">
             {{#each rows}}

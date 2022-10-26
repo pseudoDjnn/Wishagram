@@ -6,7 +6,7 @@ const session = require("express-session");
 // const helmet = require("helmet");
 const exphbs = require("express-handlebars");
 // const fileUpload = require("express-fileupload");
-// const multer = require("multer");
+const multer = require("multer");
 
 // USING EXPRESS AND CALLING THE PORT
 const app = express();

@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const multer = require("multer");
 const { Post, User, Comment } = require("../../models");
+const upload = require("../../config/multer");
 
 // GRAB ALL POSTS
 router.get("/", async (req, res) => {
@@ -59,28 +59,27 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/new-post", (req, res) => {
-  const fielStorageEngine = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, "./images");
-    },
-    filename: (req, file, cb) => {
-      cb(null, Date.now() + "--" + file.originalname);
-    },
-  });
-  const upload = multer({ storage: fielStorageEngine });
-  router.post("/new-post", upload.single("image"), (req, res) => {
-    res.send("Single file uploaded successfully.");
-  });
-});
+// router.post("/new-post", upload.single("image"), (req, res) => {
+//   const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//       cb(null, "images");
+//     },
+//     filename: (req, file, cb) => {
+//       cb(null, Date.now() + path.extname(file.originalname));
+//     },
+//   });
+//   const upload = multer({ storage: storage });
+//   router.post("/new-post", upload.single("image"), (req, res) => {
+//     res.send("Single file uploaded successfully.");
+//   });
+// });
 
 // CREATE POST
-router.post("/", async (req, res) => {
+router.post("/", upload.single("image"), async (req, res) => {
   try {
     const newPost = await Post.create({
       title: req.body.title,
       content: req.body.content,
-      photo: req.body.photo,
       user_id: req.body.user_id,
     });
     res.json(newPost);
