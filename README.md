@@ -4,9 +4,7 @@
 
 ## Description
 
-- What is the purpose of this repository? This project is design where Users can publish their wishes. Post and comment on other users. This applications follows the MVC paradigm in its stucture and uses Handlebars.js as the templating language, Se<br/>
-
-A site built using the MVC framework allow a user to signup and login afterwards. They can post comments that are tech related and comment on other posts. A delete option is individualized to the user if they wish!
+- What is the purpose of this repository? This project is design where Users can publish their wishes. Post and comment on other users wishes. This applications follows the MVC paradigm in its stucture and uses Handlebars.js as the templating language, Sequelize as the ORM<br/>
 
 # Table of Contents
 
@@ -40,13 +38,16 @@ A site built using the MVC framework allow a user to signup and login afterwards
   # Contributors
 
   pseudoDjnn
+  Raenique27
+  sukipannu
+  TDavid99
 
   # Questions
 
   Wanting to understand more about this repo?
 
-  Contact me at https://github.com/pseudoDjnn/ or at lavahrexes@gmail.com
-
+  You can veiw more of the project https://github.com/pseudoDjnn/ or contact 
+  
   ## License
 
   Copyright @ None. All Rights Reserved.
