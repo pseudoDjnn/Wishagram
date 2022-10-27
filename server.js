@@ -5,8 +5,10 @@ const session = require("express-session");
 // const morgan = require("morgan");
 // const helmet = require("helmet");
 const exphbs = require("express-handlebars");
+const { v4: uuidv4 } = require("uuid");
 // const fileUpload = require("express-fileupload");
-const multer = require("multer");
+// const multer = require("multer");
+// const cloudinary = require('./config/cloudinary')
 
 // USING EXPRESS AND CALLING THE PORT
 const app = express();

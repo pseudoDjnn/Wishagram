@@ -59,25 +59,10 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// router.post("/new-post", upload.single("image"), (req, res) => {
-//   const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//       cb(null, "images");
-//     },
-//     filename: (req, file, cb) => {
-//       cb(null, Date.now() + path.extname(file.originalname));
-//     },
-//   });
-//   const upload = multer({ storage: storage });
-//   router.post("/new-post", upload.single("image"), (req, res) => {
-//     res.send("Single file uploaded successfully.");
-//   });
-// });
-
 // CREATE POST
 router.post("/", upload.single("image"), async (req, res) => {
-  console.log(req.file);
-  console.log("HIT POST");
+  // console.log(req.file);
+  // console.log("HIT POST");
   try {
     const newPost = await Post.create({
       title: req.body.title,

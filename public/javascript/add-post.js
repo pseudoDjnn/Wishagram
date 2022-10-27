@@ -1,5 +1,4 @@
 const newPost = document.querySelector("#new-post-form");
-// const newImage = document.querySelector("#image");
 
 async function addPostHandler(event) {
   event.preventDefault();
@@ -32,26 +31,4 @@ async function addPostHandler(event) {
   }
 }
 
-// async function addPhotoHandler(e) {
-//   e.preventDefault();
-//   const photo = newImage.getAttribute("user-data");
-//   if (photo) {
-//     const phResponse = await fetch("api/posts", {
-//       method: "post",
-//       body: JSON.stringify({
-//         photo,
-//       }),
-//       headers: { "Content-Type": "application/json" },
-//     });
-//     if (phResponse.ok) {
-//       document.location.replace("/dashboard");
-//     } else {
-//       alert(phResponse.statusText);
-//     }
-//   } else {
-//     alert("You need to upload a photo!");
-//   }
-// }
-
 newPost.addEventListener("submit", addPostHandler);
-// newImage.addEventListener("submit", addPhotoHandler);
