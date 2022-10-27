@@ -1,3 +1,9 @@
 body {
   background-color: #a3a3a3;
 }
+
+.upvote-btn{
+  position: relative;
+  left: 20px;
+  background-color: lightyellow;
+}
