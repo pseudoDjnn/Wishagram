@@ -4,6 +4,6 @@ body {
 
 .upvote-btn{
   position: relative;
-  left: 20px;
-  background-color: lightyellow;
-}
+  right: 20px;
+  background-color: lightblue;
+} 
