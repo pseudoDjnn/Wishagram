@@ -76,6 +76,8 @@ router.get("/:id", async (req, res) => {
 
 // CREATE POST
 router.post("/", upload.single("image"), async (req, res) => {
+  console.log(req.file);
+  console.log("HIT POST");
   try {
     const newPost = await Post.create({
       title: req.body.title,
