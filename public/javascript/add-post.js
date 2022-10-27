@@ -24,9 +24,7 @@ async function addPostHandler(event) {
   } else {
     alert("Please fill out all fields");
   }
-  console.log(
-    
-  )
+  
 }
 
 newPost.addEventListener("submit", addPostHandler);
