@@ -11,15 +11,21 @@ router.get("/", withAuth, async (req, res) => {
       where: {
         user_id: req.session.user_id,
       },
-      attributes: ["id", "title", "content", "created_at", "updated_at"],
+      attributes: ["id", "title", "content", "created_at",
+      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+    ],
       include: [
         {
           model: User,
-          attributes: ["id", "username"],
+          attributes: [ "username"],
         },
         {
           model: Comment,
-          attributes: ["id", "comment"],
+          attributes: ["id", "comment", "post_id","user_id", "created_at"],
+          include: {
+            model: User,
+            attributes: ["username"]
+          }
         },
       ],
     });
@@ -41,15 +47,21 @@ router.get("/post/:id/", withAuth, async (req, res) => {
   try {
     const dbPostData = await Post.findOne({
       where: { id: req.params.id },
-      attributes: ["id", "title", "content", "created_at", "updated_at"],
+      attributes: ["id", "title", "content", "created_at", 
+      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+    ],
       include: [
         {
           model: User,
-          attributes: ["id", "username"],
+          attributes: ["username"],
         },
         {
           model: Comment,
-          attributes: ["id", "comment"],
+          attributes: ["id", "comment", "post_id", "user_id", "created_at"],
+          include: {
+            model: User,
+            attributes: ["username"]
+          }
         },
       ],
     });

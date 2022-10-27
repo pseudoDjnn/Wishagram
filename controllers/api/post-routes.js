@@ -1,19 +1,25 @@
 const router = require("express").Router();
-const { Post, User, Like, Comment } = require("../../models");
+const { Post, User, Vote, Comment } = require("../../models");
+const sequelize = require("../../config/connection");
 
 // GRAB ALL POSTS
 router.get("/", async (req, res) => {
   try {
     const dbPostsData = await Post.findAll({
-      attributes: { exclude: ["created_at", "updated_at"] },
+      attributes: [
+        "id",
+        "content",
+        "created_at",
+        [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+      ],
       include: [
         {
           model: User,
-          attributes: ["username"],
+          attributes: ["id", "username"],
         },
         {
           model: Comment,
-          attributes: ["id", "comment", "created_at"],
+          attributes: ["id", "comment", "post_id", "user_id", "created_at"],
           include: {
             model: User,
             attributes: ["username"],
@@ -34,7 +40,12 @@ router.get("/:id", async (req, res) => {
   try {
     const dbPostData = await Post.findOne({
       where: { id: req.params.id },
-      attributes: { exclude: ["created_at", "updated_at"] },
+      attributes: [
+        "id",
+        "content",
+        "created_at",
+        [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+      ],
       include: [
         {
           model: User,
@@ -42,7 +53,7 @@ router.get("/:id", async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ["id", "comment", "created_at"],
+          attributes: ["id", "comment", "post_id", "user_id", "created_at"],
           include: {
             model: User,
             attributes: ["username"],
@@ -64,7 +75,7 @@ router.post("/", async (req, res) => {
     const newPost = await Post.create({
       title: req.body.title,
       content: req.body.content,
-      user_id: req.body.user_id,
+      user_id: req.session.user_id,
     });
     res.json(newPost);
   } catch (err) {
@@ -74,16 +85,16 @@ router.post("/", async (req, res) => {
 });
 
 // LIKE POST
-router.put("/likePost", async (req, res) => {
+router.put('/upvote', (req, res) => {
+  // make sure the session exists first
   if (req.session) {
-    // pass session id along with all destructured properties on req.body
-    Post.likePost({...req.body, user_id: req.session.user_id }, {Like, Comment, User })
-        .then(updatedLikeData => res.json(updatedLikeData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-}
+    Post.upvote({ ...req.body, user_id: req.session.user_id }, { Vote, Comment, User })
+      .then(updatedVoteData => res.json(updatedVoteData))
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  }
 });
 
 // UPDATE POST
