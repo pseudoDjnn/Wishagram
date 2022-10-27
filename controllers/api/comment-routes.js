@@ -49,7 +49,7 @@ router.post("/", async (req, res) => {
     const dbCommentData = await Comment.create({
       comment: req.body.comment,
       post_id: req.body.post_id,
-      user_id: req.body.user_id,
+      user_id: req.session.user_id,
     });
 
     const comment = dbCommentData.get({ plain: true });
@@ -67,7 +67,7 @@ router.put("/:id", async (req, res) => {
       {
         comment: req.body.comment,
         post_id: req.body.post_id,
-        user_id: req.body.user_id,
+        user_id: req.session.user_id,
       },
       {
         where: {
