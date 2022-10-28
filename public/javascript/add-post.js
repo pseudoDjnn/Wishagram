@@ -17,7 +17,7 @@ async function addPostHandler(event) {
     data.append("user_id", user_id);
 
     const response = await fetch("/api/posts", {
-      method: "post",
+      method: "POST",
       body: data,
     });
 

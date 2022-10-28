@@ -6,7 +6,7 @@ async function registerHandler(event) {
 
   if (username && email && password) {
     const response = await fetch("/api/users", {
-      method: "post",
+      method: "POST",
       body: JSON.stringify({
         username,
         email,
