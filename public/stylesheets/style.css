@@ -13,6 +13,13 @@ body {
   right: 7px;
   bottom:2px;
 }
+
 .card-header{
   background: linear-gradient(to right,#66CCFF 0%, #FFFF00 100%);
 }
+
+.bottom-header{
+background: lightgreen;
+}
+
+
