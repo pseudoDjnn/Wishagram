@@ -1,12 +1,38 @@
-<div class="bg-dark text-light">
+<div class="background text-light">
   <div class="container">
     <div class="d-flex">
       <div class="col-md-12">
-        <h1 class="fw-bold">Wishagram</h1>
+        <h1 class="fw-bold font">Wishagram</h1>
       </div>
     </div>
   </div>
 </div>
+
+<nav class="navbar navbar-light" style="background-color: #BDE2FD;">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link {{#if active_home}}active{{/if}}" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{#if active_dashboard}}active{{/if}}" href="/dashboard">Dashboard</a>
+        </li>
+      </ul>
+      <div class="d-flex">
+        {{#if loggedIn}}
+        <a id="logout" class="text-dark btn btn-light px-3 py-1 rounded text-decoration-none fw-bold">Logout</a>
+        {{else}}
+        <a class="text-dark btn btn-light px-3 py-1 rounded text-decoration-none fw-bold" href="/login">Login</a>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</nav>
 
 <div class="container">
   {{#each posts as |post|}}
