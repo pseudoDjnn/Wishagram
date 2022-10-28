@@ -7,3 +7,9 @@ body {
   right: 20px;
   background-color: lightblue;
 } 
+
+.person {
+  position: relative;
+  right: 7px;
+  bottom:2px;
+}
