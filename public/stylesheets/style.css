@@ -22,4 +22,16 @@ body {
 background: lightgreen;
 }
 
+.background {
+  background: center;
+}
+
+.font{
+  font-family: cursive;
+  font-size: 65px;
+  color: lightsteelblue;
+  display: flex;
+  justify-content: space-around;
+}
+
 
