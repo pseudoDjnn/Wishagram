@@ -37,9 +37,9 @@ body {
   font-size: 40px;
 }
 
-.hero {
+.dandelion {
   background-image: url("/public/images/dandelion\ .jpeg");
-  height: 600px;
+  height: auto;
   background-size: cover;
   background-position: center;
   position: relative;
