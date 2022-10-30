@@ -1,9 +1,9 @@
 <div class="card m-3 bg-dark overflow-hidden">
   <div class="row card-header justify-content-between align-items-center text-light">
     <a href="{{#if active_dashboard}}/dashboard{{/if}}/post/{{id}}{{#if active_home}}/comments{{/if}}"
-      class="text-light fs-4 text-decoration-none fw-bold" name="image" id="image">{{title}}</a>
+      class="text-light fs-4 text-decoration-none fw-bold" name="{{image}}" id="image">{{title}}</a>
 
-    <img src="{{image}}" alt="{{image}}">
+    {{!-- <img src="{{#if image}}/post{{/if}}"> --}}
 
     <p class="m-0">Posted by {{user.username}} on {{format_date created_at}}</p>
   </div>

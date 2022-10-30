@@ -6,6 +6,7 @@ const session = require("express-session");
 // const helmet = require("helmet");
 const exphbs = require("express-handlebars");
 const { v4: uuidv4 } = require("uuid");
+const cors = require("cors");
 // const fileUpload = require("express-fileupload");
 // const multer = require("multer");
 // const cloudinary = require('./config/cloudinary')
@@ -31,6 +32,11 @@ const sess = {
 };
 
 app.use(session(sess));
+app.use(
+  cors({
+    origin: "http://localhost:3001",
+  })
+);
 // app.use(morgan("dev"));
 // app.use(helmet());
 // app.use(fileUpload());

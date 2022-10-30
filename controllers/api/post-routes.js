@@ -69,7 +69,7 @@ router.post("/", upload.single("image"), async (req, res) => {
     const newPost = await Post.create({
       title: req.body.title,
       content: req.body.content,
-      // image: req.file,
+      // image: req.body.path,
       // data: req.body.data,
       user_id: req.body.user_id,
     });
