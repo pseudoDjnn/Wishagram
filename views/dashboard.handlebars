@@ -35,6 +35,7 @@
   </div>
 </nav>
 
+<div class="dandelion">
 <div class="container">
   {{#each posts as |post|}}
   {{> post-info post = post active_dashboard = true }}
@@ -46,4 +47,5 @@
 {{!-- ADD NEW POST --}}
 <div class="text-center my-3">
   <a href="/dashboard/new-post" class="btn btn-success">Create New Post</a>
+</div>
 </div>
