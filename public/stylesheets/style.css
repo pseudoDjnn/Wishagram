@@ -27,11 +27,13 @@ background: lightgreen;
 }
 
 .font{
-  font-family: cursive;
   font-size: 65px;
   color: lightsteelblue;
   display: flex;
   justify-content: space-around;
 }
 
+.post-comments{
+  font-size: 40px;
+}
 
