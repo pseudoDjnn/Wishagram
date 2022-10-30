@@ -36,3 +36,11 @@ body {
 .post-comments {
   font-size: 40px;
 }
+
+.hero {
+  background-image: url("/public/images/dandelion\ .jpeg");
+  height: 600px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
