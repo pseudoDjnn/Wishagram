@@ -2,38 +2,37 @@ body {
   background-color: white;
 }
 
-.upvote-btn{
+.upvote-btn {
   position: relative;
   right: 20px;
   background-color: lightblue;
-} 
+}
 
 .person {
   position: relative;
   right: 7px;
-  bottom:2px;
+  bottom: 2px;
 }
 
-.card-header{
-  background: linear-gradient(to right,#66CCFF 0%, #FFFF00 100%);
+.card-header {
+  background: linear-gradient(to right, #66ccff 0%, #ffff00 100%);
 }
 
-.bottom-header{
-background: lightgreen;
+.bottom-header {
+  background: lightgreen;
 }
 
 .background {
   background: center;
 }
 
-.font{
+.font {
   font-size: 65px;
   color: lightsteelblue;
   display: flex;
   justify-content: space-around;
 }
 
-.post-comments{
+.post-comments {
   font-size: 40px;
 }
-
