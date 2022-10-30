@@ -8,9 +8,10 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container" name="image" id="image" enctype="multipart/form=data">
   {{#each posts as |post|}}
   {{> post-info post = post active_dashboard = true }}
+  {{!-- <p class="card-text"><a href="{{content}}">Link</a></p> --}}
   {{/each}}
 </div>
 
