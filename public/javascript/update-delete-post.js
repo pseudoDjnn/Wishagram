@@ -29,7 +29,7 @@ async function deletePost(event) {
   ];
 
   const response = await fetch(`/api/posts/${postId}`, {
-    method: "delete",
+    method: "DELETE",
     headers: { "Content-Type": "application/json" },
   });
 
