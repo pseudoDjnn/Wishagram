@@ -42,11 +42,11 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(session(sess));
-app.use(
-  cors({
-    origin: "http://localhost:3001",
-  })
-);
+// app.use(
+//   cors({
+//     origin: "http://localhost:3001",
+//   })
+// );
 // app.use(morgan("dev"));
 // app.use(helmet());
 // app.use(fileUpload());
