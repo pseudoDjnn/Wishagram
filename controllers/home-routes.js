@@ -1,20 +1,27 @@
 const router = require("express").Router();
 const { User, Post, Comment } = require("../models");
 const Url = require("url");
+const sequelize = require("../config/connection");
 
 // GRAB ALL USERS
 router.get("/", async (req, res) => {
   try {
     const dbPostsData = await Post.findAll({
-      attributes: ["id", "title", "content", "created_at"],
+      attributes: ["id", "title", "content", "created_at", 
+      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+    ],
       include: [
         {
           model: User,
-          attributes: ["id", "username"],
+          attributes: ["username"],
         },
         {
           model: Comment,
-          attributes: ["id", "comment"],
+          attributes: ["id", "comment", "post_id", "user_id", "created_at"],
+          include: {
+            model: User,
+            attributes: ['username']
+          }
         },
       ],
     });
@@ -53,28 +60,29 @@ router.get("/post/:id/comments", async (req, res) => {
   try {
     const dbPostData = await Post.findOne({
       where: { id: req.params.id },
-      attributes: ["id", "title", "content", "created_at", "updated_at"],
+      attributes: ["id", "title", "content", "created_at",
+      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+    ],
       include: [
         {
           model: User,
-          attributes: ["id", "username"],
+          attributes: ["username"],
         },
         {
           model: Comment,
-          attributes: ["id", "comment", "created_at"],
+          attributes: ["id", "comment", "user_id","post_id","created_at"],
           include: {
             model: User,
-            attributes: ["id", "username"],
+            attributes: ["username"],
           },
         },
       ],
     });
     const post = dbPostData.get({ plain: true });
-
     res.render("post-comments", {
       post,
       loggedIn: req.session.loggedIn,
-      user_id: req.session.user_id,
+      // user_id: req.session.user_id,
     });
   } catch (err) {
     console.log(err);
