@@ -1,41 +1,41 @@
 const newPost = document.querySelector("#new-post-form");
 
-const cloudinary_url = `https://res.cloudinary.com/dpzhkh1il/images/`;
-const cloud_upload_preset = "olyqsw50";
+// const cloudinary_url = `cloudinary://459538166377998:IZMHU6LkgLNUHRfssc8oJZEVWlI@dpzhkh1il`;
+// const cloud_upload_preset = "olyqsw50";
 
-const image = document.getElementById("image");
+// const image = document.getElementById("image");
 
-image.addEventListener("change", function (event) {
-  console.log(image.value);
-  const file = event.target.files[0];
-  console.log(file);
-  const formData = new FormData();
-  formData.append("file", file);
-  // formData.append("upload_preset", cloud_upload_preset);
+// image.addEventListener("submit", function (event) {
+//   console.log(image.value);
+//   const file = event.target.files[0];
+//   console.log(file);
+//   const formData = new FormData();
+//   formData.append("file", file);
+//   // formData.append("upload_preset", cloud_upload_preset);
 
-  axios({
-    url: cloudinary_url,
-    method: "POST",
-    // headers: {
-    //   "Content-Type": "application/x-www-form-urlencoded",
-    // },
-    data: formData,
-  })
-    .then(function (res) {
-      console.log(res);
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
-});
+//   axios({
+//     url: cloudinary_url,
+//     method: "POST",
+//     // headers: {
+//     //   "Content-Type": "application/x-www-form-urlencoded",
+//     // },
+//     data: formData,
+//   })
+//     .then(function (res) {
+//       console.log(res);
+//     })
+//     .catch(function (err) {
+//       console.log(err);
+//     });
+// });
 
 async function addPostHandler(event) {
   event.preventDefault();
-  console.log(addPostHandler);
+  // console.log(addPostHandler);
   const title = document.querySelector("#title").value;
   const content = document.querySelector("#content").value;
   const image = document.querySelector("#image");
-  console.log(image.value);
+  // console.log(image.value);
   // const uploaded_image = "";
 
   const user_id = newPost.getAttribute("user-data");
@@ -46,6 +46,7 @@ async function addPostHandler(event) {
 
     if (image.files && image.files.length) {
       data.append("image", image.files[0]);
+      console.log(image.files);
     }
 
     data.append("title", title);
@@ -57,6 +58,7 @@ async function addPostHandler(event) {
       method: "POST",
       body: data,
     });
+    // console.log(body);
 
     if (response.ok) {
       document.location.replace("/dashboard");

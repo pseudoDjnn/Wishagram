@@ -3,7 +3,8 @@
     <a href="{{#if active_dashboard}}/dashboard{{/if}}/post/{{id}}{{#if active_home}}/comments{{/if}}"
       class="text-light fs-4 text-decoration-none fw-bold" name="{{image}}" id="image">{{title}}</a>
 
-    {{!-- <img src="{{#if image}}/post{{/if}}"> --}}
+    <img src="https://res.cloudinary.com/dpzhkh1il/image/upload/v1667162004/some-folder-name/c914.png">
+    {{!-- <img src="{{event.image}}" alt=""> --}}
 
     <p class="m-0">Posted by {{user.username}} on {{format_date created_at}}</p>
   </div>
