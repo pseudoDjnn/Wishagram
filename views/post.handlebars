@@ -19,6 +19,12 @@
           <label for="title">Title</label>
           <input type="text" class="form-control" id="title" name="title" value="{{post.title}}" />
         </div>
+        <form action="/" method="POST" encType="multipart/form-data">
+          <h3>Upload Photo</h3>
+          <input type="file" name="images" />
+          <input type="submit" class="btn btn-primary">
+        </form>
+
         <div class="form-group">
           <label for="body">Content</label>
           <textarea class="form-control" id="content" name="content" rows="3">{{post.content}}</textarea>
@@ -28,7 +34,16 @@
       </div>
     </div>
 
+    {{!-- <form accept="image/x-png,image/gif,image/jpeg" enctype="multipart/form-data" action="/" method="post">
+      <input type="file" name="new-post-form" value="">
+      <input type="submit" name="" value="test">
+    </form> --}}
+
   </form>
+
+
+
+
 
   <script src="/javascript/update-delete-post.js"></script>
 </div>

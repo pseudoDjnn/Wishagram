@@ -1,5 +1,15 @@
 // IMPORTS
 const express = require("express");
+const session = require("express-session");
+// const morgan = require("morgan");
+// const helmet = require("helmet");
+const exphbs = require("express-handlebars");
+const { v4: uuidv4 } = require("uuid");
+const cors = require("cors");
+// const fileUpload = require("express-fileupload");
+// const multer = require("multer");
+// const cloudinary = require('./config/cloudinary')
+
 const routes = require("./controllers");
 const sequelize = require("./config/connection");
 const path = require("path");
@@ -17,7 +27,9 @@ const PORT = process.env.PORT || 3001;
 // COOK-KEY
 const sess = {
   secret: "Secret cookie is secret",
-  cookie: {},
+  cookie: {
+    expires: 875000,
+  },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
@@ -30,6 +42,14 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(session(sess));
+app.use(
+  cors({
+    origin: "http://localhost:3001",
+  })
+);
+// app.use(morgan("dev"));
+// app.use(helmet());
+// app.use(fileUpload());
 
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");

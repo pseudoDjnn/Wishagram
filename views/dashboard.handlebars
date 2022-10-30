@@ -8,6 +8,7 @@
   </div>
 </div>
 
+
 <nav class="navbar navbar-light border fixed-top" style="background-color: #BDE2FD;">
   <div class="container">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -37,8 +38,10 @@
 <div class="container">
   {{#each posts as |post|}}
   {{> post-info post = post active_dashboard = true }}
+  {{!-- <p class="card-text"><a href="{{content}}">Link</a></p> --}}
   {{/each}}
 </div>
+
 
 {{!-- ADD NEW POST --}}
 <div class="text-center my-3">

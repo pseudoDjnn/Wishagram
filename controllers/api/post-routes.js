@@ -1,9 +1,12 @@
 const router = require("express").Router();
-const { Post, User, Vote, Comment } = require("../../models");
-const sequelize = require("../../config/connection");
+
+const { Post, User, Comment } = require("../../models");
+const upload = require("../../config/multer");
+
 
 // GRAB ALL POSTS
 router.get("/", async (req, res) => {
+  console.log(req.file);
   try {
     const dbPostsData = await Post.findAll({
       attributes: [
@@ -70,7 +73,10 @@ router.get("/:id", async (req, res) => {
 });
 
 // CREATE POST
-router.post("/", async (req, res) => {
+router.post("/", upload.single("image"), async (req, res) => {
+  console.log("HIT POST =", req.file);
+  // console.log(JSON.stringify(req.file));
+  // console.log("HIT POST");
   try {
     const newPost = await Post.create({
       title: req.body.title,

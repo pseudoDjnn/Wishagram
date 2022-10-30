@@ -34,6 +34,7 @@ router.get("/", withAuth, async (req, res) => {
     res.render("dashboard", {
       posts,
       loggedIn: req.session.loggedIn,
+      // cloudinary_url: req.session.cloudinary,
       active_dashboard: q.path === "/dashboard",
     });
   } catch (err) {
