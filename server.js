@@ -10,12 +10,10 @@ const cors = require("cors");
 // const multer = require("multer");
 // const cloudinary = require('./config/cloudinary')
 
-const routes = require("./controllers");
+// const routes = require("./controllers");
 const sequelize = require("./config/connection");
 const path = require("path");
-const helpers = require("./utils/helpers");
 // const exphbs = require("express-handlebars");
-const hbs = exphbs.create({ helpers });
 // const session = require("express-session");
 
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
@@ -50,12 +48,14 @@ app.use(session(sess));
 // app.use(morgan("dev"));
 // app.use(helmet());
 // app.use(fileUpload());
+const helpers = require("./utils/helpers");
+const hbs = exphbs.create({ helpers });
 
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 // turn on routes
-app.use(routes);
+app.use(require("./controllers/"));
 
 //turn on connectection to db and server
 sequelize.sync({ force: false }).then(() => {
