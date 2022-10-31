@@ -19,7 +19,7 @@ body {
 }
 
 .bottom-header {
-  background: lightgreen;
+  background: aliceblue;
 }
 
 .background {
@@ -31,6 +31,7 @@ body {
   color: lightsteelblue;
   display: flex;
   justify-content: space-around;
+  font-family: emoji;
 }
 
 .post-comments {
@@ -43,4 +44,9 @@ body {
   background-size: cover;
   background-position: center;
   position: relative;
+}
+
+.feed-design {
+  padding: 20px;
+  color: grey;
 }

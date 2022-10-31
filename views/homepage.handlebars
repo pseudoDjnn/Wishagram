@@ -2,14 +2,14 @@
   <div class="container">
     <div class="d-flex">
       <div class="col-md-12">
-        <h1 class="fw-bold font">Wishagram</h1>
+        <h1 class="fw-bold font" style="color: lightsteelblue;">Wishagram</h1>
       </div>
     </div>
   </div>
 </div>
 
 
-<nav class="navbar navbar-light" style="background-color: #BDE2FD;">
+<nav class="navbar navbar-light" style="background-color: aliceblue;">
   <div class="container">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,9 +35,11 @@
   </div>
 </nav>
 
-<div class="dandelion">
-<div class="text-center">
+
+<section class="dandelion">
+<div class="text-center feed-design">
   <h1>Your Feed</h1>
+
 </div>
 
 <div class="container">
@@ -45,4 +47,4 @@
   {{>post-info post=post active_home=true}}
   {{/each}}
 </div>
-</div>
+</section>

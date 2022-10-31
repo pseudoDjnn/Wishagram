@@ -1,15 +1,15 @@
-<div class="text-light" style="background-color: #BDE2FD;">
+<div class="text-light" style="background-color: aliceblue;">
   <div class="container">
     <div class="d-flex">
       <div class="col-md-12">
-        <h1 class="fw-bold text-center">Your Dashboard</h1>
+        <h1 class="fw-bold text-center" style="color: lightsteelblue;">Your Dashboard</h1>
       </div>
     </div>
   </div>
 </div>
 
 
-<nav class="navbar navbar-light" style="background-color: #BDE2FD;">
+<nav class="navbar navbar-light" style="background-color: aliceblue;">
   <div class="container">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@
   </div>
 </nav>
 
-<div class="dandelion">
+<section class="dandelion">
   <div class="container">
     {{#each posts as |post|}}
     {{> post-info post = post active_dashboard = true }}
@@ -48,4 +48,4 @@
   <div class="text-center my-3">
     <a href="/dashboard/new-post" class="btn btn-success">Create New Post</a>
   </div>
-</div>
+</section>
