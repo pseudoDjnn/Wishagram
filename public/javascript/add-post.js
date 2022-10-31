@@ -1,40 +1,11 @@
 const newPost = document.querySelector("#new-post-form");
 
-// const cloudinary_url = `cloudinary://459538166377998:IZMHU6LkgLNUHRfssc8oJZEVWlI@dpzhkh1il`;
-// const cloud_upload_preset = "olyqsw50";
-
-// const image = document.getElementById("image");
-
-// image.addEventListener("submit", function (event) {
-//   console.log(image.value);
-//   const file = event.target.files[0];
-//   console.log(file);
-//   const formData = new FormData();
-//   formData.append("file", file);
-//   // formData.append("upload_preset", cloud_upload_preset);
-
-//   axios({
-//     url: cloudinary_url,
-//     method: "POST",
-//     // headers: {
-//     //   "Content-Type": "application/x-www-form-urlencoded",
-//     // },
-//     data: formData,
-//   })
-//     .then(function (res) {
-//       console.log(res);
-//     })
-//     .catch(function (err) {
-//       console.log(err);
-//     });
-// });
-
 async function addPostHandler(event) {
   event.preventDefault();
   // console.log(addPostHandler);
   const title = document.querySelector("#title").value;
   const content = document.querySelector("#content").value;
-  const image = document.querySelector("#image");
+  const image_url = document.querySelector("#image_url");
   // console.log(image.value);
   // const uploaded_image = "";
 
@@ -44,14 +15,14 @@ async function addPostHandler(event) {
     const data = new FormData();
     console.log(data);
 
-    if (image.files && image.files.length) {
-      data.append("image", image.files[0]);
-      console.log(image.files);
+    if (image_url.files && image_url.files.length) {
+      data.append("image_url", image_url.files[0]);
+      console.log(image_url.files);
     }
 
     data.append("title", title);
     data.append("content", content);
-    data.append("image", image);
+    data.append("image_url", image_url);
     data.append("user_id", user_id);
 
     const response = await fetch("/api/posts", {

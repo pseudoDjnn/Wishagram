@@ -36,16 +36,16 @@
 </nav>
 
 <div class="dandelion">
-<div class="container">
-  {{#each posts as |post|}}
-  {{> post-info post = post active_dashboard = true }}
-  {{!-- <p class="card-text"><a href="{{content}}">Link</a></p> --}}
-  {{/each}}
-</div>
+  <div class="container">
+    {{#each posts as |post|}}
+    {{> post-info post = post active_dashboard = true }}
+    {{!-- <p class="card-text"><a href="{{content}}">Link</a></p> --}}
+    {{/each}}
+  </div>
 
 
-{{!-- ADD NEW POST --}}
-<div class="text-center my-3">
-  <a href="/dashboard/new-post" class="btn btn-success">Create New Post</a>
-</div>
+  {{!-- ADD NEW POST --}}
+  <div class="text-center my-3">
+    <a href="/dashboard/new-post" class="btn btn-success">Create New Post</a>
+  </div>
 </div>

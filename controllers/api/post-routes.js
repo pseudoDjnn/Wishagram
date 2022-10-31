@@ -4,7 +4,7 @@ const upload = require("../../config/multer");
 
 // GRAB ALL POSTS
 router.get("/", async (req, res) => {
-  console.log(req.file);
+  console.log("ROUTE HIT");
   try {
     const dbPostsData = await Post.findAll({
       attributes: { exclude: ["created_at", "updated_at"] },
@@ -69,10 +69,10 @@ router.post("/", upload.single("image"), async (req, res) => {
     const newPost = await Post.create({
       title: req.body.title,
       content: req.body.content,
-      // image: req.body.path,
-      // data: req.body.data,
+      image_url: req.file.path,
       user_id: req.body.user_id,
     });
+    console.log(newPost);
     res.json(newPost);
   } catch (err) {
     console.log(err);

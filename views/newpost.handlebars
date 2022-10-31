@@ -1,79 +1,74 @@
 <div class="dandelion">
-<div class="bg-dark text-light">
-  <div class="container">
-    <div class="d-flex">
-      <div class="col-md-12">
-        <h1 class="fw-bold">Create New Post</h1>
-      </div>
-    </div>
-  </div>
-</div>
-
-<nav class="navbar navbar-light" style="background-color: #BDE2FD;">
-  <div class="container">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link {{#if active_home}}active{{/if}}" aria-current="page" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{#if active_dashboard}}active{{/if}}" href="/dashboard">Dashboard</a>
-        </li>
-      </ul>
+  <div class="bg-dark text-light">
+    <div class="container">
       <div class="d-flex">
-        {{#if loggedIn}}
-        <a id="logout" class="text-dark btn btn-light px-3 py-1 rounded text-decoration-none fw-bold">Logout</a>
-        {{else}}
-        <a class="text-dark btn btn-light px-3 py-1 rounded text-decoration-none fw-bold" href="/login">Login</a>
-        {{/if}}
+        <div class="col-md-12">
+          <h1 class="fw-bold">Create New Post</h1>
+        </div>
       </div>
     </div>
   </div>
-</nav>
 
-<!-- form -->
-<div class="container">
-  <form action="/" name="image" id="new-post-form" user-data="{{user_id}}" method="POST" enctype="multipart/form-data">
-
-    <div class="card mt-3 bg-dark overflow-hidden">
-      <div class="d-flex card-header justify-content-between align-items-center text-light">
-        <h2>New Post</h2>
-      </div>
-
-      <div class="card-body bg-light">
-        <div class="form-group">
-          <label for="title">Title</label>
-          <input type="text" class="form-control" id="title" name="title" />
+  <nav class="navbar navbar-light" style="background-color: #BDE2FD;">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link {{#if active_home}}active{{/if}}" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{#if active_dashboard}}active{{/if}}" href="/dashboard">Dashboard</a>
+          </li>
+        </ul>
+        <div class="d-flex">
+          {{#if loggedIn}}
+          <a id="logout" class="text-dark btn btn-light px-3 py-1 rounded text-decoration-none fw-bold">Logout</a>
+          {{else}}
+          <a class="text-dark btn btn-light px-3 py-1 rounded text-decoration-none fw-bold" href="/login">Login</a>
+          {{/if}}
         </div>
-
-        <div class="form-group">
-          <label for="image">Upload Photo</label>
-          <input type="file" id="image" name="image" enctype="multipart/form-data" />
-        </div>
-
-        <div class="form-group">
-          <label for="body">Content</label>
-          <textarea class="form-control" id="content" name="content" rows="3"></textarea>
-        </div>
-
-        <button type="submit" class="btn btn-success mt-3">Create</button>
       </div>
     </div>
-  </form>
-  {{!-- </form> --}}
-</div>
+  </nav>
 
+  <!-- form -->
+  <div class="container">
+    <form action="/" name="new-post-form" id="new-post-form" user-data="{{user_id}}" method="POST"
+      enctype="multipart/form-data">
 
-{{!-- <form>
-  <div class="form-group">
-    <label for="exampleFormControlFile1">Example file input</label>
-    <input type="file" class="form-control-file" id="image">
+      <div class="card mt-3 bg-dark overflow-hidden">
+        <div class="d-flex card-header justify-content-between align-items-center text-light">
+          <h2>New Post</h2>
+        </div>
+
+        <div class="card-body bg-light">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" />
+          </div>
+
+          <div class="form-group">
+            <label for="image">Upload Photo</label>
+            <input type="file" id="image_url" name="image_url" enctype="multipart/form-data"
+              user-data="{{image_url}}" />
+          </div>
+
+          <div class="form-group">
+            <label for="body">Content</label>
+            <textarea class="form-control" id="content" name="content" rows="3"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-success mt-3">Create</button>
+        </div>
+      </div>
+    </form>
+    {{!-- </form> --}}
   </div>
-</form> --}}
+
 
 </div>
 
