@@ -1,12 +1,3 @@
-<div class="text-light" style="background-color: aliceblue;">
-  <div class="container">
-    <div class="d-flex">
-      <div class="col-md-12">
-        <h1 class="fw-bold post-comments text-center" style="color: lightsteelblue;">Post Comments</h1>
-      </div>
-    </div>
-  </div>
-</div>
 <nav class="navbar navbar-light" style="background-color: aliceblue;">
   <div class="container">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -33,7 +24,7 @@
   </div>
 </nav>
 
-<section class="dandelion">
+<section>
   <div class="container">
     {{> post-info post}}
     {{#if loggedIn}}
@@ -54,12 +45,12 @@
     {{/if}}
 
     {{#if post.comments}}
-    <h2 class="mt-2">Comments</h2>
+    <h2 class="mt-2" style="color: aliceblue;">Comments</h2>
     {{#each post.comments as |comment|}}
     {{> comment-info comment}}
     {{/each}}
     {{else}}
-    <h2>No comments yet.</h2>
+    <h2 style="color: aliceblue;">No comments yet.</h2>
     {{/if}}
 
     {{#if loggedIn}}
