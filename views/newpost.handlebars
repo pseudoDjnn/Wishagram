@@ -1,5 +1,5 @@
 <section class="dandelion">
-  <div class="bg-dark text-light">
+  <div class="text-light">
     <div class="text-light" style="background-color: aliceblue;">
 
       <div class="container">
@@ -39,27 +39,24 @@
 
     <!-- form -->
     <div class="container">
-      <form action="/" name="new-post-form" id="new-post-form" user-data="{{user_id}}" method="POST"
+      <form action="/" name="image" id="new-post-form" user-data="{{user_id}}" method="POST"
         enctype="multipart/form-data">
 
-        <div class="card mt-3 bg-dark overflow-hidden">
+        <div class="card mt-3 overflow-hidden">
           <div class="d-flex card-header justify-content-between align-items-center text-light">
             <h2>New Post</h2>
           </div>
 
-          <div class="card-body bg-light">
+          <div class="card-body" style="color: grey;">
             <div class="form-group">
               <label for="title">Title</label>
               <input type="text" class="form-control" id="title" name="title" />
             </div>
 
-            <form action="/" name="image" id="image" user-data="{{image_url}}" method="POST"
-              enctype="multipart/form-data">
-              <div class="form-group">
-                <label for="image">Upload Photo</label>
-                <input type="file" id="image" name="image" enctype="multipart/form-data" user-data="{{image_url}}" />
-              </div>
-            </form>
+            <div class="form-group">
+              <label for="image">Upload Photo</label>
+              <input type="file" id="image" name="image" enctype="multipart/form-data" />
+            </div>
 
             <div class="form-group">
               <label for="body">Content</label>
@@ -70,16 +67,9 @@
           </div>
         </div>
       </form>
-      {{!-- </form> --}}
     </div>
 
 
-    {{!-- <form>
-      <div class="form-group">
-        <label for="exampleFormControlFile1">Example file input</label>
-        <input type="file" class="form-control-file" id="image">
-      </div>
-    </form> --}}
 
 </section>
 
