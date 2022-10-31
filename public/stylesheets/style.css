@@ -15,7 +15,7 @@ body {
 }
 
 .card-header {
-  background: linear-gradient(to right, #66ccff 0%, #ffff00 100%);
+  background: linear-gradient(to right, #626ff8 0%, #120494 100%);
 }
 
 .bottom-header {
@@ -35,4 +35,12 @@ body {
 
 .post-comments {
   font-size: 40px;
+}
+
+.dandelion {
+  background-image: url("/public/images/dandelion\ .jpeg");
+  height: auto;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }

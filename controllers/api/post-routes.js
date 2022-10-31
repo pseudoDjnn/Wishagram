@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Post, User, Comment } = require("../../models");
+const { Post, User, Comment, Vote } = require("../../models");
 const upload = require("../../config/multer");
 
 // GRAB ALL POSTS
