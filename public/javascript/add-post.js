@@ -40,7 +40,7 @@ async function addPostHandler(event) {
 
   const user_id = newPost.getAttribute("user-data");
 
-  if (title && content && image) {
+  if (title && content) {
     const data = new FormData();
     console.log(data);
 
@@ -68,7 +68,6 @@ async function addPostHandler(event) {
   } else {
     alert("Please fill out all fields!");
   }
-  
 }
 
 newPost.addEventListener("submit", addPostHandler);
