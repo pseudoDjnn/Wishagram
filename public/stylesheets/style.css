@@ -39,7 +39,7 @@ body {
 }
 
 .dandelion {
-  background-image: url("/public/images/dandelion .jpeg");
+  background-image: url(../images/dandelion.jpeg);
   height: auto;
   background-size: cover;
   background-position: center;
@@ -48,6 +48,6 @@ body {
 
 .feed-design{
  padding: 20px;
- color: grey;
+ color: aliceblue;
 
 }
