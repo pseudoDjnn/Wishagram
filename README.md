@@ -22,7 +22,7 @@ A site built using the MVC framework allow a user to signup and login afterwards
   To install dependencies, run:
 
   ```
-  express-handlebars, MySQL2, Sequelize, dotenv, bcrypt
+  npm i
   ```
 
   ## Usage
@@ -30,7 +30,7 @@ A site built using the MVC framework allow a user to signup and login afterwards
   To run this program, use the following command(s):
 
   ```
-  npm i, node seeds/index, npm start
+  node seeds/index, npm start
   ```
 
   # Test
