@@ -22,7 +22,7 @@ async function addPostHandler(event) {
 
     data.append("title", title);
     data.append("content", content);
-    data.append("image", image);
+    // data.append("image", image);
     data.append("user_id", user_id);
 
     const response = await fetch("/api/posts", {

@@ -11,25 +11,36 @@ router.get("/", withAuth, async (req, res) => {
       where: {
         user_id: req.session.user_id,
       },
-      attributes: ["id", "title", "content", "created_at",
-      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
-    ],
+      attributes: [
+        "id",
+        "title",
+        "image_url",
+        "content",
+        "created_at",
+        [
+          sequelize.literal(
+            "(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)"
+          ),
+          "vote_count",
+        ],
+      ],
       include: [
         {
           model: User,
-          attributes: [ "username"],
+          attributes: ["username"],
         },
         {
           model: Comment,
-          attributes: ["id", "comment", "post_id","user_id", "created_at"],
+          attributes: ["id", "comment", "post_id", "user_id", "created_at"],
           include: {
             model: User,
-            attributes: ["username"]
-          }
+            attributes: ["username"],
+          },
         },
       ],
     });
     const posts = dbPostsData.map((post) => post.get({ plain: true }));
+    console.log(posts);
     const q = Url.parse(req._parsedOriginalUrl, true);
     res.render("dashboard", {
       posts,
@@ -48,9 +59,18 @@ router.get("/post/:id/", withAuth, async (req, res) => {
   try {
     const dbPostData = await Post.findOne({
       where: { id: req.params.id },
-      attributes: ["id", "title", "content", "created_at", 
-      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
-    ],
+      attributes: [
+        "id",
+        "title",
+        "content",
+        "created_at",
+        [
+          sequelize.literal(
+            "(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)"
+          ),
+          "vote_count",
+        ],
+      ],
       include: [
         {
           model: User,
@@ -61,8 +81,8 @@ router.get("/post/:id/", withAuth, async (req, res) => {
           attributes: ["id", "comment", "post_id", "user_id", "created_at"],
           include: {
             model: User,
-            attributes: ["username"]
-          }
+            attributes: ["username"],
+          },
         },
       ],
     });
