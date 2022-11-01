@@ -24,6 +24,10 @@
   ```
   npm i
   ```
+  
+  ![Screenshot (37)](https://user-images.githubusercontent.com/105378214/199152723-f4c31537-00f0-46d6-a0c0-baff4f22d95e.png)
+
+  
 
   ## Usage
 
