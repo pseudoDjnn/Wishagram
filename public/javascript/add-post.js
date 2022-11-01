@@ -26,6 +26,10 @@ async function addPostHandler(event) {
     data.append("user_id", user_id);
     console.log(data);
 
+    for (const pair of data.entries()) {
+      console.log(`${pair[0]}, ${pair[1]}`);
+    }
+
     const response = await fetch("/api/posts", {
       method: "POST",
       body: data,
