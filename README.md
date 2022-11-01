@@ -20,7 +20,7 @@
   To install dependencies, run:
 
   ```
-  express-handlebars, MySQL2, Sequelize, dotenv, bcrypt
+  npm i
   ```
 
   ## Usage
@@ -28,7 +28,7 @@
   To run this program, use the following command(s):
 
   ```
-  npm i, node seeds/index, npm start
+  node seeds/index, npm start
   ```
 
   # Test
