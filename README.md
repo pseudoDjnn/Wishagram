@@ -4,7 +4,9 @@
 
 ## Description
 
-- What is the purpose of this repository? This project is design where Users can publish their wishes. Post and comment on other users wishes. This applications follows the MVC paradigm in its stucture and uses Handlebars.js as the templating language, Sequelize as the ORM.<br/>
+- [Deployment](https://glacial-mesa-81435.herokuapp.com/)
+
+-This project is design for a user to post their wishes(link). Post a link, an image, and comment on other users wishes. This applications follows the MVC paradigm in its stucture and uses Handlebars.js as the templating language, Sequelize as the ORM.<br/>
 
 # Table of Contents
 
@@ -22,6 +24,10 @@
   ```
   npm i
   ```
+  
+  ![Screenshot (37)](https://user-images.githubusercontent.com/105378214/199152723-f4c31537-00f0-46d6-a0c0-baff4f22d95e.png)
+
+  
 
   ## Usage
 
