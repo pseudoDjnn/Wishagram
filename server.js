@@ -1,10 +1,8 @@
 // IMPORTS
 const express = require("express");
 const session = require("express-session");
-
 const exphbs = require("express-handlebars");
 const { v4: uuidv4 } = require("uuid");
-const cors = require("cors");
 
 const sequelize = require("./config/connection");
 const path = require("path");

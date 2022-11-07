@@ -60,6 +60,26 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// // CREATE POST
+// router.post("/", upload.single("image"), async (req, res, err) => {
+//   console.log("HIT POST =", req.file);
+//   // console.log("HIT POST =", JSON.stringify(req.file));
+//   try {
+//     const newPost = await Post.create({
+//       user_id: req.body.user_id,
+//       title: req.body.title,
+//       image_url: req.file.path,
+//       content: req.body.content,
+//     });
+//     // console.log("===================", newPost);
+//     res.json(newPost);
+//   } catch (err) {
+//     console.log("this is the rejected field =>", err.field);
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// });
+
 // CREATE POST
 router.post("/", upload.single("image"), async (req, res) => {
   console.log("HIT POST =", req.file);

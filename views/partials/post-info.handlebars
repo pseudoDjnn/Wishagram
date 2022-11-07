@@ -6,7 +6,6 @@
 
     <img src="{{image_url}}" alt="{{image_url}}">
 
-    {{!--<p class="m-0">Posted by {{user.username}} on {{format_date created_at}}</p>--}}
 
     <p class="m-0"><svg class="person bi bi-person-circle" width="1em" height="1em" viewBox="0 0 16 16"
         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -19,7 +18,6 @@
   </div>
   <div class="card-body bg-light">
     <a href="{{content}}" class="card-text">{{content}}</a>
-    {{!-- <a href="{{#if content}}/dashboard{{/if}}" class="card-text"></a> --}}
   </div>
   <div class="meta text-secondary bottom-header">
     {{vote_count}} {{format_plural "Like" vote_count}}

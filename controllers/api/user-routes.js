@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
     include: [
       {
         model: Post,
-        attributes: ["id", "title", "image", "created_at", "updated_at"],
+        attributes: ["id", "title", "created_at", "updated_at"],
       },
       {
         model: Comment,
@@ -29,7 +29,7 @@ router.get("/:id", async (req, res) => {
       include: [
         {
           model: Post,
-          attributes: ["id", "title", "content", "created_at"],
+          attributes: ["id", "title", "image", "content", "created_at"],
         },
         {
           model: Comment,
