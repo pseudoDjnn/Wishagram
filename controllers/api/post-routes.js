@@ -1,37 +1,10 @@
 const router = require("express").Router();
 const { Post, User, Comment, Vote } = require("../../models");
-//const upload = require("../../config/multer");
+const upload = require("../../config/multer");
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const multer = require("multer");
 const { v4: uuidv4 } = require("uuid");
-
-// cloudinary.config({
-//   cloud_name: "dpzhkh1il",
-//   api_key: "459538166377998",
-//   api_secret: "IZMHU6LkgLNUHRfssc8oJZEVWlI",
-//   // cloudinary_name: process.env.CLOUDINARY_NAME,
-//   secure: true,
-// });
-
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET,
-  // cloudinary_name: process.env.CLOUDINARY_NAME,
-  secure: true,
-});
-
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  // params: {
-  //   folder: (req, file) "some-folder-name",
-  //   format: async (req, file) => "png",
-  //   public_id: (req, file) => uuidv4(),
-  // },public_id: (req, file) => uuidv4(),
-});
-
-const upload = multer({ storage: storage });
 
 // GRAB ALL POSTS
 router.get("/", async (req, res) => {
@@ -90,26 +63,6 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-// // CREATE POST
-// router.post("/", upload.single("image"), async (req, res, err) => {
-//   console.log("HIT POST =", req.file);
-//   // console.log("HIT POST =", JSON.stringify(req.file));
-//   try {
-//     const newPost = await Post.create({
-//       user_id: req.body.user_id,
-//       title: req.body.title,
-//       image_url: req.file.path,
-//       content: req.body.content,
-//     });
-//     // console.log("===================", newPost);
-//     res.json(newPost);
-//   } catch (err) {
-//     console.log("this is the rejected field =>", err.field);
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
 
 // CREATE POST
 router.post("/", upload.single("image"), async (req, res) => {
