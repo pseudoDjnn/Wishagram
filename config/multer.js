@@ -5,11 +5,6 @@ const uuid = require("../utils/uuid.js");
 
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
-  params: {
-    folder: "some-folder-name",
-    format: async (req, file) => "png",
-    public_id: (req, file) => uuid(),
-  },
 });
 
 const upload = multer({ storage: storage });

@@ -39,7 +39,7 @@
 
     <!-- form -->
     <section class="container">
-      <form action="/" id="new-post-form" name="new-post-form" user-data="{{user_id}}" method="POST">
+      <form id="new-post-form" name="new-post-form" enctype="multipart/form-data" user-data="{{user_id}}">
 
         <div class="card mt-3 overflow-hidden">
           <div class="d-flex card-header justify-content-between align-items-center text-light">
@@ -52,12 +52,12 @@
               <input type="text" class="form-control" id="title" name="title" />
             </div>
 
-            <form action="/" method="POST" enctype="multipart/form-data">
-              <div class="form-group">
-                <label for="image">Upload Photo</label>
-                <input type="file" id="image" name="image" />
-              </div>
-            </form>
+            <div class="form-group">
+              <label for="image">Upload Photo</label>
+              <input type="file" id="image" name="image" />
+            </div>
+            {{!-- <form action="/" method="POST" enctype="multipart/form-data"> --}}
+              {{!-- </form> --}}
 
             {{!-- <form action="/" method="POST" encType="multipart/form-data">
               <h3>Upload Photo</h3>

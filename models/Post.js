@@ -52,6 +52,7 @@ Post.init(
     },
     image_url: {
       type: DataTypes.TEXT,
+      
     },
   },
   {
